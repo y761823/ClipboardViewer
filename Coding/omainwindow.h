@@ -18,7 +18,7 @@ public:
 protected:
 	void initTabWidget();
 	void refreshFormatsWidget();
-	void refreshValueWidget(const QString &format);
+	void refreshValueWidget();
 
 private:
 	Ui::OMainWindow *ui;

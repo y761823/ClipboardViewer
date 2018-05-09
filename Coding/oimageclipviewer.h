@@ -9,6 +9,7 @@ class OImageClipViewer;
 }
 
 class QImage;
+class OImageViewer;
 
 class OImageClipViewer : public QWidget, public IClipViewer
 {
@@ -22,12 +23,9 @@ public:
 	void setClipData(QByteArray const& data, QString const& mimeType) override;
 	void clear() override;
 
-protected:
-	void paintEvent(QPaintEvent* e) override;
-
 private:
 	Ui::OImageClipViewer *ui;
-	QImage* m_pImg;
+	OImageViewer* m_viewer;
 };
 
 #endif // OIMAGECLIPVIEWER_H

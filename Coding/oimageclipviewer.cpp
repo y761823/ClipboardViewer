@@ -5,13 +5,18 @@
 #include <QImageReader>
 #include <QPainter>
 #include <QClipboard>
+#include <QBuffer>
+
+#include "oimageviewer.h"
 
 OImageClipViewer::OImageClipViewer(QWidget *parent) :
 	QWidget(parent),
-	ui(new Ui::OImageClipViewer),
-	m_pImg(nullptr)
+	ui(new Ui::OImageClipViewer)
 {
 	ui->setupUi(this);
+
+	m_viewer = new OImageViewer();
+	ui->scrollArea->setWidget(m_viewer);
 }
 
 OImageClipViewer::~OImageClipViewer()
@@ -21,43 +26,33 @@ OImageClipViewer::~OImageClipViewer()
 
 void OImageClipViewer::setClipData(const QByteArray &data, const QString &mimeType)
 {
-	delete m_pImg;
-	m_pImg = nullptr;
-
+	QImage img;
 	if (mimeType == "application/x-qt-image")
 	{
-		QImage img = QGuiApplication::clipboard()->image();
-		if (!img.isNull())
-			m_pImg = new QImage(img);
+		img = QGuiApplication::clipboard()->image();
 	}
 	else
 	{
-		QImageReader reader(data);
+		QByteArray barr = data;
+		QBuffer buff(&barr);
+		QImageReader reader(&buff);
 		if (reader.canRead())
-		{
-			QImage img = reader.read();
-			if (!img.isNull())
-				m_pImg = new QImage(img);
-		}
+			img = reader.read();
 	}
 
-	update();
+	if (!img.isNull())
+	{
+		m_viewer->setImage(img);
+
+		ui->sizeLine->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
+		ui->sizeLine->setEnabled(true);
+	}
+	else
+		clear();
 }
 
 void OImageClipViewer::clear()
 {
-	if (m_pImg)
-	{
-		delete m_pImg;
-		m_pImg = nullptr;
-		update();
-	}
-}
-
-void OImageClipViewer::paintEvent(QPaintEvent*)
-{
-	QPainter painter(this);
-	painter.fillRect(this->rect(), Qt::white);
-	if (m_pImg)
-		painter.drawImage(QPoint(0, 0), *m_pImg);
+	m_viewer->clearImage();
+	ui->sizeLine->setEnabled(false);
 }

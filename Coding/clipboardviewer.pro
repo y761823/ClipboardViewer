@@ -29,21 +29,26 @@ mac {
 }
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     qtclipboard.cpp \
 	clipboardfactory.cpp \
     omainwindow.cpp \
     otextclipviewer.cpp \
-    oimageclipviewer.cpp
+    oimageclipviewer.cpp \
+    oimageviewer.cpp \
+    ohtmlclipviewer.cpp \
+    oexportclipviewer.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     clipboard_i.h \
     qtclipboard.h \
 	clipboardfactory.h \
     omainwindow.h \
     clipviewer_i.h \
     otextclipviewer.h \
-    oimageclipviewer.h
+    oimageclipviewer.h \
+    oimageviewer.h \
+    ohtmlclipviewer.h \
+    oexportclipviewer.h
 
 FORMS += \
     omainwindow.ui \

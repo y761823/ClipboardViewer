@@ -2,6 +2,7 @@
 
 #include <QTextBrowser>
 #include <QVBoxLayout>
+#include <QDebug>
 
 OTextClipViewer::OTextClipViewer(QWidget *parent) : QWidget(parent)
 {
