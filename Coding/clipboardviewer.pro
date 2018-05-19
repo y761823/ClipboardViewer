@@ -24,32 +24,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 mac {
 	LIBS += -framework AppKit
-	SOURCES += macclipboard.mm
-	HEADERS += macclipboard.h
+    SOURCES += clipboard/macclipboard.mm
+    HEADERS += clipboard/macclipboard.h
 }
 
-SOURCES += main.cpp\
-    qtclipboard.cpp \
-	clipboardfactory.cpp \
-    omainwindow.cpp \
-    otextclipviewer.cpp \
-    oimageclipviewer.cpp \
-    oimageviewer.cpp \
-    ohtmlclipviewer.cpp \
-    oexportclipviewer.cpp
+SOURCES += main.cpp \
+    clipboard/qtclipboard.cpp \
+    clipboard/clipboardfactory.cpp \
+    clipviewer/otextclipviewer.cpp \
+    clipviewer/oimageclipviewer.cpp \
+    clipviewer/ohtmlclipviewer.cpp \
+    clipviewer/oexportclipviewer.cpp \
+    viewer/oimageviewer.cpp \
+    omainwindow.cpp
 
 HEADERS  += \
-    clipboard_i.h \
-    qtclipboard.h \
-	clipboardfactory.h \
-    omainwindow.h \
-    clipviewer_i.h \
-    otextclipviewer.h \
-    oimageclipviewer.h \
-    oimageviewer.h \
-    ohtmlclipviewer.h \
-    oexportclipviewer.h
+    clipboard/clipboard_i.h \
+    clipboard/qtclipboard.h \
+    clipboard/clipboardfactory.h \
+    clipviewer/clipviewer_i.h \
+    clipviewer/otextclipviewer.h \
+    clipviewer/oimageclipviewer.h \
+    clipviewer/ohtmlclipviewer.h \
+    clipviewer/oexportclipviewer.h \
+    viewer/oimageviewer.h \
+    omainwindow.h
 
 FORMS += \
-    omainwindow.ui \
-    oimageclipviewer.ui
+    clipviewer/oimageclipviewer.ui \
+    omainwindow.ui

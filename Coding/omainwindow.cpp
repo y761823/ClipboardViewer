@@ -3,13 +3,13 @@
 
 #include <QDebug>
 
-#include "clipboardfactory.h"
-#include "clipboard_i.h"
+#include "clipboard/clipboardfactory.h"
+#include "clipboard/clipboard_i.h"
 
-#include "otextclipviewer.h"
-#include "oimageclipviewer.h"
-#include "ohtmlclipviewer.h"
-#include "oexportclipviewer.h"
+#include "clipviewer/otextclipviewer.h"
+#include "clipviewer/oimageclipviewer.h"
+#include "clipviewer/ohtmlclipviewer.h"
+#include "clipviewer/oexportclipviewer.h"
 
 OMainWindow::OMainWindow(QWidget *parent) :
 	QMainWindow(parent),

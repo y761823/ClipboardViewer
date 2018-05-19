@@ -7,7 +7,7 @@
 #include <QClipboard>
 #include <QBuffer>
 
-#include "oimageviewer.h"
+#include "viewer/oimageviewer.h"
 
 OImageClipViewer::OImageClipViewer(QWidget *parent) :
 	QWidget(parent),
