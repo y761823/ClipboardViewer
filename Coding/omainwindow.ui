@@ -65,7 +65,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>GetDataFromClipboard</string>
+           <string>GetFormatsFromClipboard</string>
           </property>
          </widget>
         </item>
