@@ -19,6 +19,7 @@ protected:
 	void initTabWidget();
 	void refreshFormatsWidget();
 	void refreshValueWidget();
+    void showClipboradEditer();
 
 private:
 	Ui::OMainWindow *ui;

@@ -23,5 +23,11 @@ QByteArray QtClipboard::data(QString const& format)
 {
 	QClipboard* clipboard = QGuiApplication::clipboard();
 	QMimeData const* mimeData = clipboard->mimeData();
-	return mimeData->data(format);
+    return mimeData->data(format);
+}
+
+void QtClipboard::setMimeData(QMimeData *pMimeData)
+{
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    clipboard->setMimeData(pMimeData);
 }

@@ -79,6 +79,13 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="editClipBtn">
+          <property name="text">
+           <string>EditClipboard</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QTabWidget" name="tabWidget">

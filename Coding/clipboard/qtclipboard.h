@@ -15,6 +15,7 @@ public:
 	QStringList formats() override;
 	bool hasFormat(QString const& format) override;
 	QByteArray data(QString const& format) override;
+    void setMimeData(QMimeData *pMimeData) override;
 
 private:
 	QtClipboard() = default;

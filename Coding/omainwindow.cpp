@@ -11,6 +11,8 @@
 #include "clipviewer/ohtmlclipviewer.h"
 #include "clipviewer/oexportclipviewer.h"
 
+#include "oclipboardediter.h"
+
 OMainWindow::OMainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::OMainWindow)
@@ -27,6 +29,7 @@ OMainWindow::OMainWindow(QWidget *parent) :
 	connect(ui->getClipBtn, &QPushButton::clicked, this, &OMainWindow::refreshFormatsWidget);
 	connect(ui->formatsWidget, &QListWidget::itemSelectionChanged, this, &OMainWindow::refreshValueWidget);
 	connect(ui->tabWidget, &QTabWidget::currentChanged, this, &OMainWindow::refreshValueWidget);
+    connect(ui->editClipBtn, &QPushButton::clicked, this, &OMainWindow::showClipboradEditer);
 }
 
 OMainWindow::~OMainWindow()
@@ -61,6 +64,7 @@ void OMainWindow::refreshFormatsWidget()
 {
 	IClipboard* clipboard = ClipboardFactory::getClipboard(ui->clipTypeBox->currentText());
 	QStringList formats = clipboard->formats();
+    std::sort(formats.begin(), formats.end());
 
 	ui->formatsWidget->clear();
 	for (QString const& format : formats)
@@ -90,5 +94,18 @@ void OMainWindow::refreshValueWidget()
 			// 剪贴板已更新
 			viewer->clear();
 		}
-	}
+    }
+}
+
+void OMainWindow::showClipboradEditer()
+{
+    OClipboardEditer editer;
+#ifdef Q_OS_MAC
+    editer.initWith(ClipboardFactory::getClipboard("MacClipboard"));
+#else
+    editer.initWith(ClipboardFactory::getClipboard(ui->clipTypeBox->currentText()));
+#endif
+    int result = editer.exec();
+    if (result == QDialog::Accepted)
+        refreshFormatsWidget();
 }

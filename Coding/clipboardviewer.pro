@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     clipviewer/ohtmlclipviewer.cpp \
     clipviewer/oexportclipviewer.cpp \
     viewer/oimageviewer.cpp \
-    omainwindow.cpp
+    omainwindow.cpp \
+    oclipboardediter.cpp
 
 HEADERS  += \
     clipboard/clipboard_i.h \
@@ -48,8 +49,10 @@ HEADERS  += \
     clipviewer/ohtmlclipviewer.h \
     clipviewer/oexportclipviewer.h \
     viewer/oimageviewer.h \
-    omainwindow.h
+    omainwindow.h \
+    oclipboardediter.h
 
 FORMS += \
     clipviewer/oimageclipviewer.ui \
-    omainwindow.ui
+    omainwindow.ui \
+    oclipboardediter.ui
