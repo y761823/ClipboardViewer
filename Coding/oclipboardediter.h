@@ -26,6 +26,7 @@ public:
     void accept() override;
 
 protected:
+	void addBtnClick();
     void removeBtnClick();
     void showEvent(QShowEvent* e) override;
 

@@ -1,7 +1,8 @@
 #include "oclipboardediter.h"
 #include "ui_oclipboardediter.h"
 
-#include <clipboard/clipboard_i.h>
+#include "clipboard/clipboard_i.h"
+#include "dialog/oclipdataloaddialog.h"
 #include <QMimeData>
 #include <QDebug>
 
@@ -12,6 +13,7 @@ OClipboardEditer::OClipboardEditer(QWidget *parent)
 {
     ui->setupUi(this);
 
+	connect(ui->addBtn, &QPushButton::clicked, this, &OClipboardEditer::addBtnClick);
     connect(ui->removeBtn, &QPushButton::clicked, this, &OClipboardEditer::removeBtnClick);
 }
 
@@ -48,7 +50,23 @@ void OClipboardEditer::accept()
         m_clipboard->setMimeData(&mimeData);
     }
 
-    QDialog::accept();
+	QDialog::accept();
+}
+
+void OClipboardEditer::addBtnClick()
+{
+	OClipDataLoadDialog dialog(this);
+	int result = dialog.exec();
+	if (result == QDialog::Accepted)
+	{
+		QString format = dialog.getClipFormat();
+		QByteArray bytes = dialog.getClipData();
+		if (!format.isEmpty() && !bytes.isEmpty())
+		{
+			m_datas[format] = bytes;
+			refreshFormatList();
+		}
+	}
 }
 
 void OClipboardEditer::removeBtnClick()
