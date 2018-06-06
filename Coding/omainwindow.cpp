@@ -11,6 +11,10 @@
 #include "clipviewer/ohtmlclipviewer.h"
 #include "clipviewer/oexportclipviewer.h"
 
+#ifdef Q_OS_MAC
+#include "clipviewer/opdfclipviewer.h"
+#endif
+
 #include "oclipboardediter.h"
 
 OMainWindow::OMainWindow(QWidget *parent) :
@@ -58,6 +62,13 @@ void OMainWindow::initTabWidget()
 		OExportClipViewer* v = new OExportClipViewer();
 		ui->tabWidget->addTab(v, tr("Export"));
 	}
+
+#ifdef Q_OS_MAC
+	{
+		OPdfClipViewer* v = new OPdfClipViewer();
+		ui->tabWidget->addTab(v, tr("Pdf"));
+	}
+#endif
 }
 
 void OMainWindow::refreshFormatsWidget()

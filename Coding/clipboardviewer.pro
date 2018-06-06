@@ -23,9 +23,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 mac {
-	LIBS += -framework AppKit
-    SOURCES += clipboard/macclipboard.mm
-    HEADERS += clipboard/macclipboard.h
+    LIBS += -framework AppKit
+    SOURCES += clipboard/macclipboard.mm \
+        clipviewer/opdfclipviewer.cpp
+    HEADERS += clipboard/macclipboard.h \
+        clipviewer/opdfclipviewer.h
 }
 
 SOURCES += main.cpp \
