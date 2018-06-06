@@ -14,12 +14,14 @@ public:
 	void clearImage();
 
 protected:
-	void paintEvent(QPaintEvent *);
+	void paintEvent(QPaintEvent *) override;
 signals:
 
 public slots:
+
 private:
 	QImage m_img;
+	QBrush m_bgBrush;
 };
 
 #endif // OIMAGEVIEWER_H
